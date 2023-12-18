@@ -1,0 +1,25 @@
+# Dependency directories
+node_modules/
+
+# .next directory, which is used for the Next.js build output
+.next/
+
+# Automatically generated coverage reports
+coverage/
+
+# .env files (contains sensitive information, and should be handled separately)
+.env*
+
+# OS and IDE files
+.DS_Store
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Compiled binary addons (like Node.js bindings)
+build/
+
+# npm package locks
+package-lock.json
