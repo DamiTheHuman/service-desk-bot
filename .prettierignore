@@ -1,0 +1,9 @@
+# Ignore artifacts:
+build
+coverage
+.eslintrc.js
+.gitignore
+.npmignore
+.nvmrc
+.prettierignore
+.prettierrc.js

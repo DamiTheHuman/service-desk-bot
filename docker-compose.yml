@@ -13,8 +13,8 @@ services:
     command: npm run dev
     volumes:
       - ./packages/user:/app/packages/user
-
-
+      - ~/.aws/:/root/.aws/
+ 
   backend:
     build:
       context: .

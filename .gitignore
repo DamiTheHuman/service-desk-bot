@@ -9,6 +9,8 @@ coverage/
 
 # .env files (contains sensitive information, and should be handled separately)
 .env*
+# Except for the example file
+!.env.example
 
 # OS and IDE files
 .DS_Store
@@ -23,3 +25,10 @@ build/
 
 # npm package locks
 package-lock.json
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out
+
+# remove this once i figure out a better way to handle credentials
+docker-compose.yml

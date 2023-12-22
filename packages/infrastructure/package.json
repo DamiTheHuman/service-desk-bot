@@ -1,0 +1,23 @@
+{
+  "name": "@lex-link/infrastructure",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "test": "bin/test.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "cdk": "cdk",
+    "test": "vitest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-cdk-lib": "^2.116.1",
+    "constructs": "^10.3.0",
+    "i": "^0.3.7",
+    "npm": "^10.2.5"
+  }
+}

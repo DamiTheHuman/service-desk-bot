@@ -1,0 +1,50 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Index Page > renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="index container p-4"
+  >
+    <div
+      class="d-flex justify-content-between flex-column"
+    >
+      <h2>
+        Service Desk Bot 
+        <span
+          class="h4 text-black-50"
+        >
+          v.1.0.0
+        </span>
+      </h2>
+      <div
+        class="mt-auto fixed-bottom container pb-4"
+      >
+        <form
+          role="deliver-message"
+        >
+          <div
+            class="input-group"
+          >
+            <span
+              class="input-group-text"
+              id="basic-addon1"
+            >
+              <i
+                class="bi bi-person-circle"
+              />
+            </span>
+            <input
+              class="message-prompt form-control form-control-lg"
+              id="message-prompt"
+              name="message"
+              placeholder="Message Service Desk Bot..."
+              type="text"
+              value=""
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
