@@ -1,24 +1,16 @@
-import {Stack, CfnOutput} from 'aws-cdk-lib';
-import * as cognito from 'aws-cdk-lib/aws-cognito';
+import {Stack} from 'aws-cdk-lib';
+import * as lambda from 'aws-cdk-lib/aws-lambda';
 import {Construct} from 'constructs';
 import {IEnvironment} from '../config/environment';
+import {NodejsFunction} from 'aws-cdk-lib/aws-lambda-nodejs';
 
 export class LexStack extends Stack {
   constructor(scope: Construct, id: string, props?: IEnvironment) {
     super(scope, id, props);
 
-    const userPool = new cognito.UserPool(this, 'LexUserPool', {
-      userPoolName: 'LexUserPoolName',
-      selfSignUpEnabled: true,
-      signInAliases: {
-        email: true,
-      },
+    new NodejsFunction(this, 'SubmitTicket', {
+      runtime: lambda.Runtime.NODEJS_20_X,
+      entry: 'src/submitTicket.ts',
     });
-
-    new cognito.CfnIdentityPool(this, 'LexIdentityPool', {
-      allowUnauthenticatedIdentities: true,
-    });
-
-    new CfnOutput(this, 'UserPoolId', {value: userPool.userPoolId});
   }
 }
