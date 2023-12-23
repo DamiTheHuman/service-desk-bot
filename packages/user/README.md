@@ -1,38 +1,61 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Frontend
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped.
+
+This application serves as the frontend for our monolithic application.
+
+## Prerequisites
+
+Firstly, create a `.env.local` file from a copy of `.env.example`. This will house the configuration for the project.
+
+This project depends on multiple AWS infrastructures to be configured, and you will need to fill in these key details to communicate with AWS Lex:
+
+````env
+...
+AWS_PROFILE=
+AWS_REGION=
+BOT_ID=
+BOT_ALIAS_ID=
+BOT_LOCALE_ID=
+...
 
 ## Getting Started
 
-First, run the development server:
+Once the [.env.local](.env.local) file has been configured you can start the application with
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+````
+
+Open [http://localhost:3000](http://localhost:3000) and you should be greeted with the front end
+
+## Bot Messages
+
+AWS Lex bot returns messages as generic strings. To make the application more robust, we make use of the xml format to send the message and options for each response from the bot.
+
+An example of a response would be like:
+
+```xml
+<root>
+	<messages>Nice to meet you {Name}</messages>
+	<messages>What would you like to do today?</messages>
+	<options>
+		<key>Raise An Incident</key>
+		<value>Raise An Incident</value>
+	</options>
+</root>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This response will then be converted to JSON and rendered appropriately:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-We can be smart and handle our messages as JSON strings and use JSON.parse giving us stronger power in how we render componentns
+```json
+{
+  "messages": ["Nice to meet you Dami", "What would you like to do today?"],
+  "options": [
+    {
+      "key": ["Raise An Incident"],
+      "value": ["Raise An Incident"]
+    }
+  ]
+}
+```
