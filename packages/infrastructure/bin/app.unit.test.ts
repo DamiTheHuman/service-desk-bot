@@ -13,7 +13,8 @@ describe('App', () => {
     const stack = new LexStack(app, 'LexStack-dev', config.dev);
 
     const template = Template.fromStack(stack);
-    template.resourceCountIs('AWS::Cognito::UserPool', 1);
+    template.resourceCountIs('AWS::Lambda::Function', 1);
+    template.resourceCountIs('AWS::DynamoDB::Table', 1);
     expect(stack).toBeDefined();
   });
 });

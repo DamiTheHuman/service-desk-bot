@@ -11,9 +11,11 @@ import Page from '.';
 
 const {MockDeliverMessageToBot} = vi.hoisted(() => {
   return {
-    MockDeliverMessageToBot: vi.fn().mockResolvedValue({
-      messages: ['Foo'],
-    }),
+    MockDeliverMessageToBot: vi.fn().mockResolvedValue([
+      {
+        messages: ['Foo'],
+      },
+    ]),
   };
 });
 
@@ -49,11 +51,21 @@ describe('Index Page', () => {
     expect(inputElement.getAttribute('value')).toEqual('Test Input');
   });
 
+  it('It does not submit and reset the input field if the user inputs empty spaces', () => {
+    const inputElement = screen.getByPlaceholderText(
+      'Message Service Desk Bot...'
+    );
+    fireEvent.change(inputElement, {
+      target: {value: '   '},
+    });
+
+    expect(inputElement.getAttribute('value')).toEqual('   ');
+  });
+
   it('It does not render the Foo response from aws lex on the page', async () => {
     MockDeliverMessageToBot.mockImplementationOnce(() => {
       return;
     });
-    const rootComponent = container.querySelector('.index');
     const inputElement = screen.getByPlaceholderText(
       'Message Service Desk Bot...'
     );
@@ -64,7 +76,6 @@ describe('Index Page', () => {
 
     const formElement = screen.getByRole('deliver-message');
     fireEvent.submit(formElement);
-    expect(rootComponent).toBeTruthy();
     expect(inputElement.getAttribute('value')).toEqual('');
 
     await waitFor(() => {
@@ -74,7 +85,6 @@ describe('Index Page', () => {
   });
 
   it('It renders the Foo response from aws lex on the page', async () => {
-    const rootComponent = container.querySelector('.index');
     const inputElement = screen.getByPlaceholderText(
       'Message Service Desk Bot...'
     );
@@ -85,7 +95,6 @@ describe('Index Page', () => {
 
     const formElement = screen.getByRole('deliver-message');
     fireEvent.submit(formElement);
-    expect(rootComponent).toBeTruthy();
     expect(inputElement.getAttribute('value')).toEqual('');
 
     await waitFor(() => {

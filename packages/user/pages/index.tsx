@@ -14,7 +14,7 @@ export default function Page() {
   >([]);
   const [message, setMessage] = useState<string>('');
 
-  const sendMessage = async message => {
+  const sendMessage = async (message: string) => {
     setMessages(prevState => [
       ...prevState,
       {
@@ -26,23 +26,25 @@ export default function Page() {
 
     setMessage('');
 
-    const data = await deliverMessageToBot(message);
-    if (!data) {
+    const data: IMessageData[] | undefined = await deliverMessageToBot(message);
+    if (!data || data.length == 0) {
       return;
     }
 
     setMessages(prevState => [
       ...prevState,
-      {
-        data: data as IMessageData,
-        timestamp: new Date(),
-        type: MessageType.Bot,
-      },
+      ...data.map(messageData => {
+        return {
+          data: messageData as IMessageData,
+          timestamp: new Date(),
+          type: MessageType.Bot,
+        };
+      }),
     ]);
   };
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    await sendMessage(message);
+    await sendMessage(message.trim());
   }
 
   return (

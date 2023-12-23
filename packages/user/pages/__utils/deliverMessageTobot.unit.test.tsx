@@ -29,7 +29,7 @@ describe('DeliverMessageToBot', () => {
 
   it('Returns data if the request is successful', async () => {
     const result = await deliverMessageToBot('hello');
-    expect(result).toStrictEqual({messages: ['Hello']});
+    expect(result).toStrictEqual([{messages: ['Hello']}]);
   });
 
   it('Returns data with options in the appropriate format ', async () => {
@@ -43,14 +43,16 @@ describe('DeliverMessageToBot', () => {
     });
 
     const result = await deliverMessageToBot('hello');
-    expect(result).toStrictEqual({
-      messages: ['Hello'],
-      options: [
-        {
-          key: 'Foo',
-          value: 'Bar',
-        },
-      ],
-    });
+    expect(result).toStrictEqual([
+      {
+        messages: ['Hello'],
+        options: [
+          {
+            key: 'Foo',
+            value: 'Bar',
+          },
+        ],
+      },
+    ]);
   });
 });

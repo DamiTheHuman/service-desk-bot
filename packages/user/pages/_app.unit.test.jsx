@@ -5,7 +5,6 @@ import App from './_app';
 import Page from '.';
 
 describe('Index Page', () => {
-  let asFragment;
   it('renders correctly', () => {
     const {asFragment} = render(<App Component={Page} />);
     expect(asFragment()).toMatchSnapshot();

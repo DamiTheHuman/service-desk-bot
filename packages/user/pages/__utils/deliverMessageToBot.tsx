@@ -10,7 +10,7 @@ import {parseXML} from '../../utils/helpers/parseXML';
  */
 export const deliverMessageToBot = async (
   message: string
-): Promise<undefined | IMessageData> => {
+): Promise<undefined | IMessageData[]> => {
   if (!message) {
     return;
   }
@@ -27,7 +27,16 @@ export const deliverMessageToBot = async (
 
   const result: LexResponseSchema = response.data;
 
-  const xml = parseXML(result.messages[0].content);
+  const data: IMessageData[]= []
+  for(const message of result.messages){
+    data.push(processMessage(message))
+  }
+
+  return data;
+};
+
+const processMessage = (message) => {
+  const xml = parseXML(message.content);
   const data = xml.root;
 
   if (data.options) {
@@ -37,4 +46,4 @@ export const deliverMessageToBot = async (
   }
 
   return data as IMessageData;
-};
+}
