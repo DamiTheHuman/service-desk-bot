@@ -2,11 +2,45 @@
 
 exports[`Index Page > renders correctly 1`] = `
 <DocumentFragment>
-  <div
-    class="index container p-4"
+  <header
+    class="p-3 bg-dark text-white mb-3"
   >
     <div
-      class="d-flex justify-content-between flex-column"
+      class="container"
+    >
+      <div
+        class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+      >
+        <ul
+          class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+        >
+          <li>
+            <a
+              class="nav-link px-2 text-secondary"
+              href="/"
+            >
+              Home
+            </a>
+          </li>
+          <li>
+            <a
+              class="nav-link px-2 text-secondary"
+              href="/statistics"
+            >
+              Statistics
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <div
+    class="container flex-column vh-75 
+    p-4 pb-4 overflow-auto"
+    id="index"
+  >
+    <div
+      class="d-flex justify-content-between flex-column pb-4"
     >
       <h2>
         Service Desk Bot 
@@ -17,7 +51,66 @@ exports[`Index Page > renders correctly 1`] = `
         </span>
       </h2>
       <div
-        class="mt-auto fixed-bottom container pb-4"
+        class="message-box"
+      >
+        <div
+          class="message-data d-flex flex-row"
+        >
+          <div
+            class="p-2"
+          >
+            <i
+              class="bi bi-robot fs-4"
+            />
+          </div>
+          <div
+            class="p-2"
+          >
+            <div
+              class="container-fluid"
+            >
+              <div
+                class="row row-cols-1"
+              >
+                <div
+                  class="col fw-bold message-data__author-role"
+                >
+                  Service Desk Bot
+                </div>
+                <div
+                  class="col message-data__message"
+                >
+                  <div
+                    class="messages"
+                  >
+                    <p
+                      class="messages__message"
+                    >
+                      Say Something to get started!
+                    </p>
+                  </div>
+                  <div
+                    class="options"
+                  >
+                    <button
+                      class="options__option btn btn-dark mx-2"
+                    >
+                      Hi
+                    </button>
+                    <button
+                      class="options__option btn btn-dark mx-2"
+                    >
+                      Hello
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mt-auto fixed-bottom container pb-2 bg-white"
       >
         <form
           role="deliver-message"

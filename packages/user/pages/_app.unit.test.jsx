@@ -2,7 +2,7 @@ import React from 'react';
 import {expect, describe, it} from 'vitest';
 import {render} from '@testing-library/react';
 import App from './_app';
-import Page from '.';
+import Page from './index';
 
 describe('Index Page', () => {
   it('renders correctly', () => {

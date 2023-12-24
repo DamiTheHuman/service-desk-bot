@@ -1,4 +1,4 @@
-import {Stack} from 'aws-cdk-lib';
+import {CfnOutput, Stack} from 'aws-cdk-lib';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
 import {Construct} from 'constructs';
@@ -8,7 +8,7 @@ import {NodejsFunction} from 'aws-cdk-lib/aws-lambda-nodejs';
 export class LexStack extends Stack {
   constructor(scope: Construct, id: string, props?: IEnvironment) {
     super(scope, id, props);
-    
+
     const ticketsTable = new dynamodb.Table(this, 'Tickets', {
       partitionKey: {
         name: 'ticketId',
@@ -25,5 +25,7 @@ export class LexStack extends Stack {
     });
 
     ticketsTable.grantReadWriteData(submitTicket);
+
+    new CfnOutput(this, 'TicketsTableName', {value: ticketsTable.tableName});
   }
 }

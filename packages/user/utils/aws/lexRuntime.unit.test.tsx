@@ -1,13 +1,13 @@
-import {describe, it, vi} from 'vitest';
-import {getLexRuntime} from './lex-runtime';
+import {describe, expect, it, vi} from 'vitest';
+import {getLexRuntime as lexRuntime} from './lexRuntime';
 
 vi.hoisted(() => {
   vi.stubEnv('AWS_REGION', 'test');
   vi.stubEnv('AWS_PROFILE', 'default');
 });
 
-describe('Get LexRuntime', () => {
+describe('LexRuntime', () => {
   it('Does not throw an error when env variables are set', () => {
-    getLexRuntime;
+    expect(lexRuntime).toBeDefined();
   });
 });

@@ -1,5 +1,5 @@
 import {DynamoDB} from 'aws-sdk';
-// @ts-ignore: Unreachable code error
+// @ts-expect-error: Unreachable code error
 import * as uuid from 'uuid';
 
 export interface ISlot {

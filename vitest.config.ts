@@ -10,7 +10,7 @@ export default defineConfig({
       exclude: [
         ...(configDefaults.coverage.exclude ?? ''),
         'packages/infrastructure/bin/app.ts',
-        'packages/infrastructure/cdk.out/'
+        'packages/infrastructure/cdk.out/',
       ],
     },
     environment: 'jsdom',

@@ -9,9 +9,9 @@ import {
 } from '@testing-library/react';
 import Page from '.';
 
-const {MockDeliverMessageToBot} = vi.hoisted(() => {
+const {MockPostMessage: MockPostMessage} = vi.hoisted(() => {
   return {
-    MockDeliverMessageToBot: vi.fn().mockResolvedValue([
+    MockPostMessage: vi.fn().mockResolvedValue([
       {
         messages: ['Foo'],
       },
@@ -19,9 +19,9 @@ const {MockDeliverMessageToBot} = vi.hoisted(() => {
   };
 });
 
-vi.mock('./__utils/deliverMessageToBot', () => {
+vi.mock('./__utils/postMessage', () => {
   return {
-    deliverMessageToBot: MockDeliverMessageToBot,
+    postMessage: MockPostMessage,
   };
 });
 
@@ -39,7 +39,7 @@ describe('Index Page', () => {
   });
 
   it('Keeps track of user input when they type', () => {
-    const rootComponent = container.querySelector('.index');
+    const rootComponent = container.querySelector('#index');
     const inputElement = screen.getByPlaceholderText(
       'Message Service Desk Bot...'
     );
@@ -63,7 +63,7 @@ describe('Index Page', () => {
   });
 
   it('It does not render the Foo response from aws lex on the page', async () => {
-    MockDeliverMessageToBot.mockImplementationOnce(() => {
+    MockPostMessage.mockImplementationOnce(() => {
       return;
     });
     const inputElement = screen.getByPlaceholderText(

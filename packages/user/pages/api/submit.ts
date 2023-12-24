@@ -1,5 +1,5 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
-import {getLexRuntime} from '../../utils/aws/lex-runtime';
+import {getLexRuntime} from '../../utils/aws/lexRuntime';
 import {RecognizeTextRequest} from 'aws-sdk/clients/lexruntimev2';
 import {getEnv} from '../../utils/helpers/getEnv';
 
@@ -49,7 +49,6 @@ export default async function handler(
       intent: sessionState?.intent ?? null,
     });
   } catch (error) {
-    console.log;
     res.status(500).json(error);
   }
 }

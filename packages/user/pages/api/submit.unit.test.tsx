@@ -1,4 +1,4 @@
-import {vi, expect, describe, it, Mocked} from 'vitest';
+import {vi, expect, describe, it, Mocked, afterEach} from 'vitest';
 import submit from './submit';
 import {NextApiRequest, NextApiResponse} from 'next';
 
@@ -39,7 +39,7 @@ const resMock: Mocked<NextApiResponse> = {
   setHeader: setHeaderMock,
 } as unknown as Mocked<NextApiResponse>;
 
-vi.mock('../../utils/aws/lex-runtime', () => {
+vi.mock('../../utils/aws/lexRuntime', () => {
   return {
     getLexRuntime: getLexRuntimeMock,
   };
@@ -52,6 +52,10 @@ vi.mock('../../utils/helpers/generateSession', () => {
 });
 
 describe('api/submit', () => {
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
   it('returns a 200 response if successful', async () => {
     await submit(reqMock, resMock);
     expect(statusMock).toBeCalledWith(200);
@@ -69,6 +73,7 @@ describe('api/submit', () => {
 
   it('returns a 500 response if an error occurs', async () => {
     promiseMock.mockRejectedValueOnce(() => 'Async Error');
+
     await submit(reqMock, resMock);
     expect(statusMock).toBeCalledWith(500);
   });

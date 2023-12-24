@@ -1,5 +1,5 @@
 import {describe, it, expect, vi} from 'vitest';
-import {deliverMessageToBot} from './deliverMessageToBot';
+import {postMessage} from './postMessage';
 
 const {MockAxiosPost} = vi.hoisted(() => {
   const xmlStub = '<root><messages>Hello</messages></root>';
@@ -21,14 +21,14 @@ vi.mock('axios', () => {
   };
 });
 
-describe('DeliverMessageToBot', () => {
+describe('PostMessage', () => {
   it('Returns nothing if no message is passed', async () => {
-    const result = await deliverMessageToBot('');
+    const result = await postMessage('');
     expect(result).toBeUndefined();
   });
 
   it('Returns data if the request is successful', async () => {
-    const result = await deliverMessageToBot('hello');
+    const result = await postMessage('hello');
     expect(result).toStrictEqual([{messages: ['Hello']}]);
   });
 
@@ -42,7 +42,7 @@ describe('DeliverMessageToBot', () => {
       },
     });
 
-    const result = await deliverMessageToBot('hello');
+    const result = await postMessage('hello');
     expect(result).toStrictEqual([
       {
         messages: ['Hello'],

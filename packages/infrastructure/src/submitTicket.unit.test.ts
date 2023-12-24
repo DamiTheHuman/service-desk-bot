@@ -21,7 +21,7 @@ describe('SubmitTicket', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });
-  
+
   const intentStub = {
     sessionState: {
       intent: {
