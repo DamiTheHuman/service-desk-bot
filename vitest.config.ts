@@ -11,13 +11,10 @@ export default defineConfig({
         ...(configDefaults.coverage.exclude ?? ''),
         'packages/infrastructure/bin/app.ts',
         'packages/infrastructure/cdk.out/**',
-        'packages/infrastructure/config/**'
+        'packages/infrastructure/config/**',
       ],
     },
-    exclude: [
-      ...configDefaults.exclude,
-      'packages/infrastructure/cdk.out/**',
-    ],
+    exclude: [...configDefaults.exclude, 'packages/infrastructure/cdk.out/**'],
     environment: 'jsdom',
     pool: 'forks', // Needed for bundling NodeJSFunction during tests
   },
