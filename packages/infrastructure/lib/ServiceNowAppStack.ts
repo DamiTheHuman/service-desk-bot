@@ -7,9 +7,9 @@ import { IEnvironment } from "../config/environment";
 export class ServiceNowAppStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props: IEnvironment) {
     super(scope, id, props);
-    
+
     const imageAsset = new ecrAssets.DockerImageAsset(this, `${props.stage}-FrontendImage`, {
-      directory: "../user",
+      directory: `${__dirname}/../../user`,
     });
 
     const service = new apprunner_alpha.Service(this, `${props.stage}-ServiceNowBotApp`, {
