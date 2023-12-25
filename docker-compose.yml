@@ -4,7 +4,7 @@ services:
   user-frontend:
     build:
       context: .
-      dockerfile: ./packages/user/Dockerfile
+      dockerfile: ./packages/app/Dockerfile
     ports:
       - "3000:3000"
     environment:
@@ -12,7 +12,7 @@ services:
       - BACKEND_URL=http://backend:3002/
     command: npm run dev
     volumes:
-      - ./packages/user:/app/packages/user
+      - ./packages/app:/app/packages/app
       - ~/.aws/:/root/.aws/
  
   backend:

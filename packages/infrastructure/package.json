@@ -1,5 +1,5 @@
 {
-  "name": "@lex-link/infrastructure",
+  "name": "@service-desk-bot/infrastructure",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

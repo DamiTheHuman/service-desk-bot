@@ -1,5 +1,5 @@
 {
-  "name": "lex-link",
+  "name": "service-desk-bot",
   "main": "index.js",
   "private": "true",
   "workspaces": [

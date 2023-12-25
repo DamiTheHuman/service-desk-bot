@@ -12,7 +12,7 @@ export class ServiceNowAppStack extends cdk.Stack {
       this,
       `${props.stage}-FrontendImage`,
       {
-        directory: `${__dirname}/../../user`,
+        directory: `${__dirname}/../../app`,
       }
     );
 
