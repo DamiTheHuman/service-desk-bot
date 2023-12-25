@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {IMessageData} from '../../components/MessageData';
-import {LexResponseSchema} from '../api/submit';
-import {parseXML} from '../../utils/helpers/parseXML';
+import {LexResponseSchema} from '../../pages/api/submit';
+import {parseXML} from './parseXML';
 /**
  * Key and values in the options fields are returned as singular arrays in XML format
  * Join this arrays so they can be read as a singular string

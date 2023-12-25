@@ -1,5 +1,5 @@
 import {vi, expect, describe, it, Mocked, afterEach} from 'vitest';
-import submit from './submit';
+import submit from '../../pages/api/submit';
 import {NextApiRequest, NextApiResponse} from 'next';
 
 const {promiseMock, getLexRuntimeMock, statusMock, setHeaderMock} = vi.hoisted(

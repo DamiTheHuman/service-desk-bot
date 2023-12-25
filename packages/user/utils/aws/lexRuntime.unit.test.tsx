@@ -4,6 +4,8 @@ import {getLexRuntime as lexRuntime} from './lexRuntime';
 vi.hoisted(() => {
   vi.stubEnv('AWS_REGION', 'test');
   vi.stubEnv('AWS_PROFILE', 'default');
+  vi.stubEnv('AWS_ACCESS_KEY_ID', '123');
+  vi.stubEnv('AWS_SECRET_ACCESS_KEY', '456');
 });
 
 describe('LexRuntime', () => {

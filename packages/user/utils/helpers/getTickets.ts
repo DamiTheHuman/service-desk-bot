@@ -1,5 +1,5 @@
-import {dynamoDB} from '../../../utils/aws/dynamoDB';
-import {getEnv} from '../../../utils/helpers/getEnv';
+import {dynamoDB} from '../aws/dynamoDB';
+import {getEnv} from './getEnv';
 
 export const getTickets = async () => {
   const params = {

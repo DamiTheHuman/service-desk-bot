@@ -5,18 +5,18 @@ import {Construct} from 'constructs';
 import {IEnvironment} from '../config/environment';
 import {NodejsFunction} from 'aws-cdk-lib/aws-lambda-nodejs';
 
-export class LexStack extends Stack {
-  constructor(scope: Construct, id: string, props?: IEnvironment) {
+export class ServiceNowDataStack extends Stack {
+  constructor(scope: Construct, id: string, props: IEnvironment) {
     super(scope, id, props);
 
-    const ticketsTable = new dynamodb.Table(this, 'Tickets', {
+    const ticketsTable = new dynamodb.Table(this, `${props.stage}-TicketsTable`, {
       partitionKey: {
         name: 'ticketId',
         type: dynamodb.AttributeType.STRING,
       },
     });
 
-    const submitTicket = new NodejsFunction(this, 'SubmitTicket', {
+    const submitTicket = new NodejsFunction(this, `${props.stage}-SubmitTicket`, {
       runtime: lambda.Runtime.NODEJS_20_X,
       entry: `${__dirname}/../src/submitTicket.ts`,
       environment: {
@@ -25,7 +25,7 @@ export class LexStack extends Stack {
     });
 
     ticketsTable.grantReadWriteData(submitTicket);
-
+    
     new CfnOutput(this, 'TicketsTableName', {value: ticketsTable.tableName});
   }
 }

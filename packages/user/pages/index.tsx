@@ -5,7 +5,7 @@ import {
   IMessageData,
 } from '../components/MessageData';
 import MessageBox from '../components/MessageBox';
-import {postMessage} from './__utils/postMessage';
+import {postMessage} from '../utils/helpers/postMessage';
 
 export default function Page() {
   //TODO: Explore a better way of handling this type

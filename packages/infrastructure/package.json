@@ -10,11 +10,20 @@
     "build": "tsc",
     "watch": "tsc -w",
     "cdk": "cdk",
-    "test": "vitest"
+    "test": "vitest",
+    "synth:dev": "cdk synth -c context=dev",
+    "synth:prod": "cdk synth -c context=prod",
+    "deploy:dev": "cdk deploy -c context=dev --all",
+    "deploy:prod": "cdk deploy -c context=prod --all",
+    "destroy:dev": "cdk destroy -c context=dev --all",
+    "destroy:prod": "cdk destroy -c context=prod --all"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@aws-cdk/aws-amplify-alpha": "^2.116.1-alpha.0",
+    "@aws-cdk/aws-apprunner-alpha": "^2.116.1-alpha.0",
+    "aws-cdk": "^2.116.1",
     "aws-cdk-lib": "^2.116.1",
     "aws-sdk": "^2.1525.0",
     "constructs": "^10.3.0",

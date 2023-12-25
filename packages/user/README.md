@@ -14,6 +14,8 @@ This project depends on multiple AWS infrastructures to be configured, and you w
 ...
 AWS_PROFILE=
 AWS_REGION=
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
 BOT_ID=
 BOT_ALIAS_ID=
 BOT_LOCALE_ID=

@@ -17,7 +17,7 @@ const {MockDynamoDB, MockScan} = vi.hoisted(() => {
   };
 });
 
-vi.mock('../../../utils/aws/dynamoDB', () => {
+vi.mock('../aws/dynamoDB', () => {
   return {
     dynamoDB: MockDynamoDB,
   };

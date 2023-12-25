@@ -7,7 +7,7 @@ import {
   cleanup,
   waitFor,
 } from '@testing-library/react';
-import Page from '.';
+import Page from '../pages';
 
 const {MockPostMessage: MockPostMessage} = vi.hoisted(() => {
   return {
@@ -19,7 +19,7 @@ const {MockPostMessage: MockPostMessage} = vi.hoisted(() => {
   };
 });
 
-vi.mock('./__utils/postMessage', () => {
+vi.mock('../utils/helpers/postMessage', () => {
   return {
     postMessage: MockPostMessage,
   };

@@ -1,7 +1,7 @@
 import {describe, it, expect} from 'vitest';
 import * as config from '../config';
 import * as cdk from 'aws-cdk-lib';
-import {LexStack} from '../lib/lex-stack';
+import {ServiceNowDataStack} from '../lib/ServiceNowDataStack';
 import {Template} from 'aws-cdk-lib/assertions';
 
 describe('App', () => {
@@ -10,7 +10,7 @@ describe('App', () => {
       context: {stage: 'test'},
     });
 
-    const stack = new LexStack(app, 'LexStack-dev', config.dev);
+    const stack = new ServiceNowDataStack(app, 'LexStack-dev', config.dev);
 
     const template = Template.fromStack(stack);
     template.resourceCountIs('AWS::Lambda::Function', 1);

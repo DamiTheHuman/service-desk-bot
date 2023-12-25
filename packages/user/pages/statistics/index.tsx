@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {getTickets} from './__utils/getTickets';
+import {getTickets} from '../../utils/helpers/getTickets';
 import Ticket from '../../components/Ticket';
 
 export default function Page({data}) {

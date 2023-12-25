@@ -1,8 +1,18 @@
-import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import {LexStack} from '../lib/lex-stack';
-import * as config from '../config';
+import {ServiceNowDataStack} from '../lib/ServiceNowDataStack';
+import {ServiceNowAppStack} from '../lib/ServiceNowAppStack';
+import * as configs from '../config';
 
 const app = new cdk.App();
 
-new LexStack(app, 'LexStack-dev', config.dev);
+const context = app.node.tryGetContext('context');
+let config = configs.dev;
+switch (context) {
+  case 'prod':
+    config = configs.prod;
+    break;
+  default:
+    config = configs.dev;
+}
+new ServiceNowDataStack(app, `${config.stage}-ServiceNowDataStack`, config);
+new ServiceNowAppStack(app, `${config.stage}-ServiceNowBotAppStack`, config);

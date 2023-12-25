@@ -1,25 +1,16 @@
-# Use a Node.js base image
-FROM node:20-alpine
+FROM --platform=linux/amd64 node:20-alpine AS base
+# Setting working directory. All the path will be relative to WORKDIR
+WORKDIR /usr/src/app
+# Installing dependencies
+COPY package*.json ./
+RUN npm install
+# Copying source files
+COPY . .
+# Building app
+RUN npm run build
 
-# Set the root working directory to app
-WORKDIR /app
-
-# Copy the monolithic application
-COPY package.json package.json
-COPY package-lock.json package-lock.json
-
-# Copy the required packages
-COPY packages/user packages/user
-COPY packages/shared packages/shared
-
-# Insall all dependencies
-RUN npm run install-all
-
-# Set the working directory
-WORKDIR /app/packages/user
-
-# Expose the port
 EXPOSE 3000
 
-# Start the application
-CMD ["npm", "run", "dev"]
+ENV PORT 3000
+# Running the app
+CMD [ "npm", "start" ]

@@ -1,7 +1,7 @@
 import React from 'react';
 import {expect, describe, it, vi, beforeEach, afterEach} from 'vitest';
 import {render, cleanup} from '@testing-library/react';
-import Page, {getServerSideProps} from '.';
+import Page, {getServerSideProps} from '../../pages/statistics/index';
 
 const {MockGetTickets: MockGetTickets} = vi.hoisted(() => {
   return {
@@ -13,7 +13,7 @@ const {MockGetTickets: MockGetTickets} = vi.hoisted(() => {
   };
 });
 
-vi.mock('./__utils/getTickets', () => {
+vi.mock('../../utils/helpers/getTickets', () => {
   return {
     getTickets: MockGetTickets,
   };
