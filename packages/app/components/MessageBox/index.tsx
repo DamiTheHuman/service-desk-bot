@@ -13,13 +13,14 @@ const MessageBox: React.FC<IMessageBoxProps> = ({messageData, onClick}) => {
 
   return (
     <div className="message-box">
-      {messageData.map(({data, timestamp, type}, key) => {
+      {messageData.map(({data, timestamp, type, loading}, key) => {
         return (
           <MessageData
             key={key}
             data={data}
             timestamp={timestamp}
             type={type}
+            loading={loading}
             onClick={onClick}
           />
         );

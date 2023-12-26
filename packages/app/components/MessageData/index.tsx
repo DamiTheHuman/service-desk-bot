@@ -16,10 +16,16 @@ export interface IMessageDataProps {
   data: IMessageData;
   timestamp: Date;
   type: MessageType;
+  loading?: boolean;
   onClick: (message: string) => void;
 }
 
-const MessageData: React.FC<IMessageDataProps> = ({data, type, onClick}) => {
+const MessageData: React.FC<IMessageDataProps> = ({
+  data,
+  type,
+  loading,
+  onClick,
+}) => {
   const icon: string = type == MessageType.User ? 'bi-person' : 'bi-robot';
   const authorRole: string =
     type == MessageType.User ? 'You' : 'Service Desk Bot';
@@ -35,10 +41,35 @@ const MessageData: React.FC<IMessageDataProps> = ({data, type, onClick}) => {
             <div className="col fw-bold message-data__author-role">
               {authorRole}
             </div>
-            <div className="col message-data__message">
-              <Messages messages={data.messages} />
-              <Options onClick={onClick} options={data.options} />
-            </div>
+            {loading ? (
+              <div className="col message-data__message">
+                <div className="row">
+                  <div className="col-1">
+                    <div
+                      className="spinner-grow spinner-grow-sm"
+                      role="status"
+                    />
+                  </div>
+                  <div className="col-1">
+                    <div
+                      className="spinner-grow spinner-grow-sm"
+                      role="status"
+                    />
+                  </div>
+                  <div className="col-1">
+                    <div
+                      className="spinner-grow spinner-grow-sm"
+                      role="status"
+                    />
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="col message-data__message">
+                <Messages messages={data.messages} />
+                <Options onClick={onClick} options={data.options} />
+              </div>
+            )}
           </div>
         </div>
       </div>

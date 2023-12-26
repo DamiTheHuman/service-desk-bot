@@ -8,6 +8,8 @@ import MessageBox from '../components/MessageBox';
 import {postMessage} from '../utils/helpers/postMessage';
 
 export default function Page() {
+  const [message, setMessage] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false)
   //TODO: Explore a better way of handling this type
   const [messages, setMessages] = useState<
     Omit<IMessageDataProps, 'onClick'>[]
@@ -24,7 +26,6 @@ export default function Page() {
       type: MessageType.Bot,
     },
   ]);
-  const [message, setMessage] = useState<string>('');
 
   const sendMessage = async (message: string) => {
     setMessages(prevState => [
@@ -34,17 +35,24 @@ export default function Page() {
         timestamp: new Date(),
         type: MessageType.User,
       },
+      {
+        data: {messages: ['']},
+        timestamp: new Date(),
+        type: MessageType.Bot,
+        loading: true,
+      },
     ]);
-
+    
+    setLoading(true)
     setMessage('');
-
     const data: IMessageData[] | undefined = await postMessage(message);
+    setLoading(false);
     if (!data || data.length == 0) {
       return;
     }
 
     setMessages(prevState => [
-      ...prevState,
+      ...prevState.splice(0, prevState.length - 1),
       ...data.map(messageData => {
         return {
           data: messageData as IMessageData,
@@ -84,6 +92,7 @@ export default function Page() {
                 onChange={e => setMessage(e.target.value)}
                 className="message-prompt form-control form-control-lg"
                 placeholder="Message Service Desk Bot..."
+                disabled={loading}
               />
             </div>
           </form>
